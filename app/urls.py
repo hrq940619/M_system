@@ -20,4 +20,8 @@ from app import views
 
 urlpatterns = [
     path('depart_list/', views.depart_list),
+    path('depart_add/', views.depart_add),
+    path('depart_deleted/', views.depart_deleted),
+    path('depart_edit/<int:nid>/', views.depart_edit),
+
 ]

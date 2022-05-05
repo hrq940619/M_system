@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>部门列表</title>
+    <title>编辑部门</title>
     <link rel="stylesheet" href="{% static 'app/plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
     <style>
         {# 去掉圆角 #}
@@ -13,6 +13,7 @@
     </style>
 </head>
 <body>
+
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -49,43 +50,21 @@
 
 <div>
     <div class="container">
-        <div style="margin-bottom: 10px">
-            <a class="btn btn-success" href="/depart_add/">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                新建部门
-            </a>
-        </div>
-
         <div class="panel panel-default">
-            <!-- Default panel contents -->
             <div class="panel-heading">
-                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                部门列表
+                <h3 class="panel-title">编辑部门</h3>
             </div>
+            <div class="panel-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" class="form-control"  placeholder="标题" name="title" value="{{ row_object.title }}">
+                    </div>
 
-            <!-- Table -->
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>名称</th>
-                    <th>操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for obj in queryset %}
-                    <tr>
-                        <td>{{ obj.id }}</td>
-                        <td>{{ obj.title }}</td>
-                        <td>
-                            <a class="btn btn-primary btn-xs" href="/depart_edit/{{ obj.id }}">编辑</a>
-                            <a class="btn btn-danger btn-xs" href="/depart_deleted/?nid={{ obj.id }}">删除</a>
-                        </td>
-                    </tr>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
