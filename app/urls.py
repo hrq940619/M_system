@@ -19,9 +19,24 @@ from django.urls import path
 from app import views
 
 urlpatterns = [
+    # 部门管理
     path('depart_list/', views.depart_list),
     path('depart_add/', views.depart_add),
     path('depart_deleted/', views.depart_deleted),
     path('depart_edit/<int:nid>/', views.depart_edit),
+
+    # 用户管理
+    path('user_list/', views.user_list),
+    path('user_add/', views.user_add),
+    path('user_model_form_add/', views.user_model_form_add),
+    path('user_edit/<int:nid>/', views.user_edit),
+    path('user_deleted/<int:nid>/', views.user_deleted),
+
+    # 靓号管理
+    path('pretty_list/', views.pretty_list),
+    path('pretty_add/', views.pretty_add),
+    # path('pretty_edit/<int:nid>', views.pretty_edit),
+    path('pretty_edit/<int:nid>/', views.pretty_edit),
+    path('pretty_deleted/<int:tid>/', views.pretty_deleted),
 
 ]

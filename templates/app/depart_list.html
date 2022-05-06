@@ -1,52 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>部门列表</title>
-    <link rel="stylesheet" href="{% static 'app/plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
-    <style>
-        {# 去掉圆角 #}
-        .navbar {
-            border-radius: 0;
-        }
-    </style>
-</head>
-<body>
-<nav class="navbar navbar-default">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">用户管理系统</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="/depart_list/">部门管理</a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">登录</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">黄榕强 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">个人资料</a></li>
-                        <li><a href="#">我的信息</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">注销</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+{% extends 'app/layout.html' %}
 
+{% block content %}
 <div>
     <div class="container">
         <div style="margin-bottom: 10px">
@@ -82,15 +36,10 @@
                             <a class="btn btn-danger btn-xs" href="/depart_deleted/?nid={{ obj.id }}">删除</a>
                         </td>
                     </tr>
-                    </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-</body>
-<script src="{% static 'app/js/jquery-3.6.0.js' %}"></script>
-<script src="{% static 'app/plugins/bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
-</html>
+{% endblock %}
