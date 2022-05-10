@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>部门列表</title>
+    <title>用户管理系统</title>
     <link rel="stylesheet" href="{% static 'app/plugins/bootstrap-3.4.1/dist/css/bootstrap.min.css' %}">
     <style>
         {# 去掉圆角 #}
@@ -11,6 +11,7 @@
             border-radius: 0;
         }
     </style>
+    {% block css %}{% endblock %}
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -27,6 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                <li><a href="/admin_list/">管理员账户</a></li>
                 <li><a href="/depart_list/">部门管理</a></li>
                 <li><a href="/user_list/">用户管理</a></li>
                 <li><a href="/pretty_list/">靓号管理</a></li>
@@ -55,4 +57,5 @@
 </body>
 <script src="{% static 'app/js/jquery-3.6.0.js' %}"></script>
 <script src="{% static 'app/plugins/bootstrap-3.4.1/dist/js/bootstrap.min.js' %}"></script>
+{% block js %}{% endblock %}
 </html>

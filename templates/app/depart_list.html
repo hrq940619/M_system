@@ -1,7 +1,6 @@
 {% extends 'app/layout.html' %}
 
 {% block content %}
-<div>
     <div class="container">
         <div style="margin-bottom: 10px">
             <a class="btn btn-success" href="/depart_add/">
@@ -40,6 +39,8 @@
                 </tbody>
             </table>
         </div>
+        <ul class="pagination">
+            {{ page_string }}
+        </ul>
     </div>
-</div>
 {% endblock %}
