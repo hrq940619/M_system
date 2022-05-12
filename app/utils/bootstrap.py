@@ -1,8 +1,7 @@
 from django import forms
 
 
-class BootStrapModelForm(forms.ModelForm):
-
+class BootStrap:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,7 +14,20 @@ class BootStrapModelForm(forms.ModelForm):
                 field.widget.attrs["class"] = "form-control"
                 field.widget.attrs["placeholder"] = field.label
             else:
-                if name == 'name':
-                    field.widget.attrs = {'placeholder': field.label}
-                    continue
-                field.widget.attrs = {'class': "form-control", 'placeholder': field.label}
+                field.widget.attrs ={
+                    "class": "form-control",
+                    "placeholder": field.label
+                }
+                # if name == 'name':
+                #     field.widget.attrs = {'placeholder': field.label}
+                #     continue
+                # field.widget.attrs = {'class': "form-control", 'placeholder': field.label}
+
+
+class BootStrapModelForm(BootStrap, forms.ModelForm):
+    pass
+
+
+# class BootStrapForm(BootStrap, forms.ModelForm):
+class BootStrapForm(BootStrap, forms.Form):
+    pass

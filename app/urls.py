@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app.views import depart,user,pretty,admin
+from app.views import depart, user, pretty, admin, account
 
 urlpatterns = [
     # 部门管理
@@ -43,5 +43,14 @@ urlpatterns = [
     path('admin_list/', admin.admin_list),
     path('admin_add/', admin.admin_add),
     path('admin_edit/<int:nid>/', admin.admin_edit),
+    path('admin_deleted/<int:nid>/', admin.admin_deleted),
+    path('admin_reset_password/<int:nid>/', admin.admin_reset_password),
+
+    # 登录（用户认证）
+    path('login/', account.login),
+    # 退出登录（注销）
+    path('logout/', account.logout),
+    # 图片验证码
+    path('image_code/', account.image_code),
 
 ]
