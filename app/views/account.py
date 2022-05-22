@@ -62,11 +62,13 @@ def login(request):
         # 验证码的校验
         # get()和pop()都返回项目，但 pop() 将它们从源字典中删除，而 get() 将它们保留在那里。
         # user_input_code = form.cleaned_data.get('code')
+
+        # 先取消验证码校验逻辑
         user_input_code = form.cleaned_data.pop('code')
-        code = request.session.get('image_code', '')
-        if code.upper() != user_input_code.upper():
-            form.add_error("code","验证码错误")
-            return render(request, 'app/login.html', {'form': form})
+        # code = request.session.get('image_code', '')
+        # if code.upper() != user_input_code.upper():
+        #     form.add_error("code","验证码错误")
+        #     return render(request, 'app/login.html', {'form': form})
 
         # 去数据库校验用户名和密码是否正确，获取用户对象
         admin_object = models.Admin.objects.filter(**form.cleaned_data).first()
