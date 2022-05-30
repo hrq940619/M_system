@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 
 from app import models
 from app.utils.bootstrap import BootStrapModelForm
+from app.utils.pagination import Pagination
 
 class TaskModelForm(BootStrapModelForm):
     class Meta:
@@ -17,8 +18,16 @@ class TaskModelForm(BootStrapModelForm):
 
 def task_list(request):
     """ 任务列表 """
+    queryset = models.Task.objects.all().order_by('-id')
     form = TaskModelForm()
-    return render(request, 'app/task_list.html', {"form": form})
+    page_object = Pagination(request, queryset)
+
+    context = {
+        'form': form,
+        'queryset': page_object.page_queryset,
+        "page_string": page_object.html()
+    }
+    return render(request, 'app/task_list.html', context)
 
 
 import json

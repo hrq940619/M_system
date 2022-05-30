@@ -13,17 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from django.views.static import serve
 
-from app.views import depart, user, pretty, admin, account, task
+from app.views import depart, user, pretty, admin, account, task, order, chart, upload, city
 
 urlpatterns = [
+
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
+
     # 部门管理
     path('depart_list/', depart.depart_list),
     path('depart_add/', depart.depart_add),
     path('depart_deleted/', depart.depart_deleted),
     path('depart_edit/<int:nid>/', depart.depart_edit),
+
+    # 上传文件
+    path('depart_multi/', depart.depart_multi),
 
     # 用户管理
     path('user_list/', user.user_list),
@@ -57,5 +65,28 @@ urlpatterns = [
     path('task_list/', task.task_list),
     path('task_ajax/', task.task_ajax),
     path('task_add/', task.task_add),
+
+    # 订单管理
+    path('order_list/', order.order_list),
+    path('order_add/', order.order_add),
+    path('order_delete/', order.order_delete),
+    path('order_edit/', order.order_edit),
+    path('order_detail/', order.order_detail),  # 实现将默认值展示到编辑页面的功能
+
+    # 数据统计
+    path('chart_list/', chart.chart_list),
+    path('chart_bar/', chart.chart_bar),
+    path('chart_pie/', chart.chart_pie),
+    path('chart_line/', chart.chart_line),
+    path('chart_highcharts/', chart.chart_highcharts),
+
+    # 上传文件
+    path('upload_list/', upload.upload_list),
+    path('upload_form/', upload.upload_form),
+    path('upload_modal_form/', upload.upload_modal_form),
+
+    # 城市列表
+    path('city_list/', city.city_list),
+    path('city_add/', city.city_add),
 
 ]

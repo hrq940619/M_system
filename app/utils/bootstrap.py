@@ -2,12 +2,16 @@ from django import forms
 
 
 class BootStrap:
+    bootstrap_exclude_fields = []
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         # 循环找到所有的插件，添加class样式
         # 循环ModelForm中的所有字段，给每个字段的插件设置
         for name, field in self.fields.items():
+            if name in self.bootstrap_exclude_fields:
+                continue
 
             # 字段中有属性的话，要保留原来的属性
             if field.widget.attrs:

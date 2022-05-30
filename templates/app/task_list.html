@@ -30,6 +30,50 @@
             </div>
         </div>
 
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                任务列表
+            </div>
+
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>级别</th>
+                    <th>负责人</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <td>{{ obj.id }}</td>
+                        <td>{{ obj.title }}</td>
+                        <td>{{ obj.get_level_display }}</td>
+                        <td>{{ obj.user.username }}</td>
+                        <td>
+                            <a href="/admin_reset_password/{{ obj.id }}">重置密码</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="#">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="#">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="clearfix">
+            <ul class="pagination">
+                {{ page_string }}
+            </ul>
+        </div>
+
 
         <hr/>
         <h1>Ajax学习</h1>
@@ -138,14 +182,16 @@
                     data: $("#formAdd").serialize(),
                     dataType: "JSON",
                     success: function (res) {
-                        if (res.status){
+                        if (res.status) {
                             alert("添加成功");
+                            // 使用JS实现页面的刷新，获取新增成功的数据
+                            location.reload();
                         } else {
                             {# 获取错误信息 #}
                             {#console.log(res.error);#}
 
                             {# 循环错误信息 #}
-                            $.each(res.error,function(name,data){
+                            $.each(res.error, function (name, data) {
                                 {#console.log(name,data);#}
                                 $("#id_" + name).next().text(data[0])
                             })
