@@ -30,8 +30,7 @@ urlpatterns = [
     path('depart_deleted/', depart.depart_deleted),
     path('depart_edit/<int:nid>/', depart.depart_edit),
 
-    # 上传文件
-    path('depart_multi/', depart.depart_multi),
+
 
     # 用户管理
     path('user_list/', user.user_list),
@@ -84,6 +83,8 @@ urlpatterns = [
     path('upload_list/', upload.upload_list),
     path('upload_form/', upload.upload_form),
     path('upload_modal_form/', upload.upload_modal_form),
+    # 上传文件2
+    path('depart_multi/', depart.depart_multi),
 
     # 城市列表
     path('city_list/', city.city_list),
